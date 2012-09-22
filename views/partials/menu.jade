@@ -1,0 +1,14 @@
+
+if locals.user
+	#menu
+		span.name= user.name
+		a(href='/directory') directory
+		a(href='/edit') edit
+		a(href='/logout') logout
+else 
+	#menu
+		a(href='/') home
+		a(href='/about') about
+		a(href='/contact') contact
+		a(href='/login') login
+		a(href='/register') register
