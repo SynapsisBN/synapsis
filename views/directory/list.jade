@@ -3,4 +3,5 @@
 	each user in users
 		each value, property in user
 			if property == 'name'
-				h2 #{value}
+				h2 
+					a(href='#{value}') #{value}

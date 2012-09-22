@@ -5,6 +5,7 @@ var express = require('express')
 	, login = require('./routes/login')
 	, register = require('./routes/register')
 	, directory = require('./routes/directory')
+	,	user_edit = require('./routes/user_edit')
 	, guest = require('./routes/guest')
 	, validate = require('./lib/middleware/validate')
 	, page = require('./lib/middleware/page')
@@ -46,16 +47,16 @@ app.post('/login', login.submit);
 app.get('/logout', login.logout);
 app.get('/register', register.form);
 app.post('/register', register.submit);
+app.get('/:name?/edit', user_edit.show);
 
 //Directory
 app.get('/directory', directory.list);
-/*app.post('/upload'
-  , validate.required('photo[name]')
-  , validate.lengthAbove('photo[name]', 4)
-  , photos.submit(app.get('photos')));*/
+
+//
+app.get('/:name?', directory.view)
 
 //Pagination
-app.get('/:page?', page(User.count), User.list);
+//app.get('/:page?', page(User.count), User.list);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

@@ -12,3 +12,11 @@ exports.list = function(req, res, next){
     });
 	});
 };
+
+exports.view = function(req, res, next){
+	var name = req.params.name;
+	res.render('directory/view', {
+    title: 'Company Profile',
+    name: name
+  });
+}
