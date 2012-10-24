@@ -1,17 +1,18 @@
 /***** Module Dependencies *****/
-var express = require('express')
-  , http = require('http')
-  , path = require('path')
-	, login = require('./routes/login')
-	, register = require('./routes/register')
-	, directory = require('./routes/directory')
-	,	user_edit = require('./routes/user_edit')
-	, guest = require('./routes/guest')
-	, validate = require('./lib/middleware/validate')
-	, page = require('./lib/middleware/page')
-	, User = require('./models/user')
-	, ensure = require('./lib/middleware/ensure')
-	, user = require('./lib/middleware/user');
+var express   = require('express')
+  , http      = require('http')
+  , path      = require('path')
+  , login     = require('./routes/login')
+  , register  = require('./routes/register')
+  , directory = require('./routes/directory')
+  , user_edit = require('./routes/user_edit')
+  , guest     = require('./routes/guest')
+  , vtn       = require('./routes/vtn')
+  , validate  = require('./lib/middleware/validate')
+  , page      = require('./lib/middleware/page')
+  , User      = require('./models/user')
+  , ensure    = require('./lib/middleware/ensure')
+  , user      = require('./lib/middleware/user');
 
 var app = express();
 
@@ -25,7 +26,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('s8f9wueb8321nif8sdf8'));
   app.use(express.cookieSession());
-	app.use(user); //Checks if user is authenticated
+  app.use(user); //Checks if user is authenticated
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
 });
@@ -52,8 +53,10 @@ app.get('/:name?/edit', user_edit.show);
 //Directory
 app.get('/directory', directory.list);
 
+app.get('/vtn', vtn.vtn);
+
 //
-app.get('/:name?', directory.view)
+//app.get('/:name?', directory.view);
 
 //Pagination
 //app.get('/:page?', page(User.count), User.list);

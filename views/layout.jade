@@ -1,8 +1,11 @@
 doctype 5
 html
-	head
-		title= title
-		link(rel='stylesheet', href='/stylesheets/style.css')
-	body
-		include partials/menu
-		block content
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
+    block scripts
+
+  body
+    include partials/menu
+    block content
